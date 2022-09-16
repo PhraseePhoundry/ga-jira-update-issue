@@ -2,7 +2,7 @@ const { get } = require('lodash')
 
 const serviceName = 'jira'
 const { format } = require('url')
-const client = require('../client')(serviceName)
+const client = require('./client')(serviceName)
 
 class Jira {
   constructor ({ baseUrl, token, email }) {
@@ -44,6 +44,23 @@ class Jira {
 
       throw error
     }
+  }
+
+  async getIssueTransitions (issueId) {
+    return this.fetch('getIssueTransitions', {
+      pathname: `/rest/api/2/issue/${issueId}/transitions`,
+    }, {
+      method: 'GET',
+    })
+  }
+
+  async transitionIssue (issueId, data) {
+    return this.fetch('transitionIssue', {
+      pathname: `/rest/api/3/issue/${issueId}/transitions`,
+    }, {
+      method: 'POST',
+      body: data,
+    })
   }
 
   async fetch (apiMethodName,
