@@ -1,8 +1,5 @@
 name: Jira update issue
 description: Updates an issue
-branding:
-  icon: 'align-left'
-  color: 'blue'
 inputs:
   issue:
     description: Key of the issue to be updated
@@ -12,4 +9,4 @@ inputs:
     required: true
 runs:
   using: 'node12'
-  main: './dist/index.js'
+  main: './index.js'
