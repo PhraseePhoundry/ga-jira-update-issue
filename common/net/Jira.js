@@ -31,6 +31,14 @@ class Jira {
     }
   }
 
+  //   {
+  //     "update" : {
+  //         "components" : [{"remove" : {"name" : "Trans/A"}}, {"add" : {"name" : "Trans/M"}}],
+  //         "assignee" : [{"set" : {"name" : "harry"}}],
+  //         "summary" : [{"set" : "Big block Chevy"}]
+  //     }
+  // }
+
   async updateIssue (issueId, newTag) {
     try {
       return this.fetch('updateIssue', {
@@ -38,7 +46,8 @@ class Jira {
       },
       { method: 'PUT',
         body: {
-          fields: {
+          update: {
+            components: [{ add: { name: 'Service Version Test' } }],
             customfield_10090: newTag,
           },
         } },)
