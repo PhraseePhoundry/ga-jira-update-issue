@@ -11,12 +11,32 @@ class Jira {
     this.email = email
   }
 
+  async getProjects (query = {}) {
+    const { fields = [], expand = [] } = query
+
+    try {
+      return this.fetch('getIssue', {
+        pathname: `/rest/api/2/issue/createmeta`,
+        query: {
+          fields: fields.join(','),
+          expand: expand.join(','),
+        },
+      })
+    } catch (error) {
+      if (get(error, 'res.status') === 404) {
+        return
+      }
+
+      throw error
+    }
+  }
+
   async getIssue (issueId, query = {}) {
     const { fields = [], expand = [] } = query
 
     try {
       return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/${issueId}?expand=names`,
+        pathname: `/rest/api/2/issue/${issueId}`,
         query: {
           fields: fields.join(','),
           expand: expand.join(','),

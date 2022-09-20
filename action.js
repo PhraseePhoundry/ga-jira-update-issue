@@ -17,6 +17,9 @@ module.exports = class {
     const issueId = this.argv.issue || this.config.issue || null
 
     console.log(`Updating ${issueId}`)
+    console.log('Getting project details')
+    console.log(await this.Jira.getProjects())
+    console.log('Getting issue details')
     console.log(await this.Jira.getIssue(issueId))
 
     return {}
