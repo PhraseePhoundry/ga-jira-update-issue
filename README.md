@@ -1,2 +1,2 @@
-# Jira Update
-Updates a Jira ticket with the auto-bumped service version number
+# Jira Update Issue
+Updates a Jira issue with a service version number

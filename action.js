@@ -15,10 +15,10 @@ module.exports = class {
 
   async execute () {
     const issueId = this.argv.issue || this.config.issue || null
+    const { comment } = this.argv
 
-    console.log(`Updating issue: ${issueId}`)
-    // await this.Jira.addComment(issueId, { body: comment })
-    console.log(await this.Jira.getIssue(issueId))
+    console.log(`Adding comment to ${issueId}: \n${comment}`)
+    await this.Jira.addComment(issueId, { body: comment })
 
     return {}
   }
