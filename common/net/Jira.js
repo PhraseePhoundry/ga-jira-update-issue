@@ -53,10 +53,9 @@ class Jira {
 
   async getCustomFields () {
     // const { fields = [], expand = [] } = query
-
     try {
       return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/createmeta?projectKeys=HS&expand=projects.issuetypes.fields`,
+        pathname: `/rest/api/2/issue/createmeta/HS/issuetypes?startAt=0&maxResults=50`,
         // query: {
         //   fields: fields.join(','),
         //   expand: expand.join(','),
