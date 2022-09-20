@@ -48,7 +48,7 @@ class Jira {
         body: {
           update: {
             components: [{ add: { name: 'Service Version Test' } }],
-            customfield_10090: newTag,
+            // customfield_10090: newTag,
           },
         } },)
     } catch (error) {
