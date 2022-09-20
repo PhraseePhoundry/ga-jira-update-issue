@@ -11,8 +11,6 @@ const githubEvent = require(process.env.GITHUB_EVENT_PATH)
 const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
 
 async function exec () {
-  console.log(parseArgs())
-
   try {
     const result = await new Action({
       githubEvent,

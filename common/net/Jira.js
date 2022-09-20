@@ -11,40 +11,6 @@ class Jira {
     this.email = email
   }
 
-  async getProjects (query = {}) {
-    const { fields = [], expand = [] } = query
-
-    try {
-      return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/createmeta`,
-        query: {
-          fields: fields.join(','),
-          expand: expand.join(','),
-        },
-      })
-    } catch (error) {
-      if (get(error, 'res.status') === 404) {
-        return
-      }
-
-      throw error
-    }
-  }
-
-  async getAllFields () {
-    try {
-      return this.fetch('getIssue', {
-        pathname: `/rest/api/2/field`,
-      })
-    } catch (error) {
-      if (get(error, 'res.status') === 404) {
-        return
-      }
-
-      throw error
-    }
-  }
-
   async getIssue (issueId, query = {}) {
     const { fields = [], expand = [] } = query
 
@@ -68,14 +34,14 @@ class Jira {
   async updateIssue (issueId, newTag) {
     try {
       return this.fetch('updateIssue', {
-        method: 'PUT',
         pathname: `/rest/api/2/issue/${issueId}`,
-        data: {
+      },
+      { method: 'PUT',
+        body: {
           fields: {
             customfield_10090: newTag,
           },
-        },
-      })
+        } },)
     } catch (error) {
       if (get(error, 'res.status') === 404) {
         return
