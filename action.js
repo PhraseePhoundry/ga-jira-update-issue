@@ -15,14 +15,17 @@ module.exports = class {
 
   async execute () {
     const issueId = this.argv.issue || this.config.issue || null
+    const newTag = this.argv.newTag || null
 
-    console.log(`Updating ${issueId}`)
-    console.log('Getting project details')
-    console.log(await this.Jira.getAllFields())
+    // console.log(`Updating ${issueId}`)
+    // console.log('Getting project details')
+    // console.log(await this.Jira.getAllFields())
     // console.log('Getting project issues details')
     // console.log(await this.Jira.getProjectIssues())
     // console.log('Getting issue details')
     // console.log(await this.Jira.getIssue(issueId))
+
+    console.log(await this.Jira.updateIssue(issueId, newTag))
 
     return {}
   }

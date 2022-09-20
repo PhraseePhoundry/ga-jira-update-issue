@@ -31,49 +31,10 @@ class Jira {
     }
   }
 
-  async getProjectIssues () {
-    // const { fields = [], expand = [] } = query
-
-    try {
-      return this.fetch('getProjectIssues', {
-        pathname: `/rest/api/2/issue/createmeta?projectKeys=HS&expand=projects.issuetypes.fields`,
-        // query: {
-        //   fields: fields.join(','),
-        //   expand: expand.join(','),
-        // },
-      })
-    } catch (error) {
-      if (get(error, 'res.status') === 404) {
-        return
-      }
-
-      throw error
-    }
-  }
-
   async getAllFields () {
     try {
       return this.fetch('getIssue', {
         pathname: `/rest/api/2/field`,
-      })
-    } catch (error) {
-      if (get(error, 'res.status') === 404) {
-        return
-      }
-
-      throw error
-    }
-  }
-
-  async getCustomFields () {
-    // const { fields = [], expand = [] } = query
-    try {
-      return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/createmeta/HS/issuetypes?startAt=0&maxResults=50`,
-        // query: {
-        //   fields: fields.join(','),
-        //   expand: expand.join(','),
-        // },
       })
     } catch (error) {
       if (get(error, 'res.status') === 404) {
@@ -93,6 +54,26 @@ class Jira {
         query: {
           fields: fields.join(','),
           expand: expand.join(','),
+        },
+      })
+    } catch (error) {
+      if (get(error, 'res.status') === 404) {
+        return
+      }
+
+      throw error
+    }
+  }
+
+  async updateIssue (issueId, newTag) {
+    try {
+      return this.fetch('updateIssue', {
+        method: 'PUT',
+        pathname: `/rest/api/2/issue/${issueId}`,
+        data: {
+          fields: {
+            customfield_10090: newTag,
+          },
         },
       })
     } catch (error) {
