@@ -51,6 +51,20 @@ class Jira {
     }
   }
 
+  async getAllFields () {
+    try {
+      return this.fetch('getIssue', {
+        pathname: `/rest/api/2/field`,
+      })
+    } catch (error) {
+      if (get(error, 'res.status') === 404) {
+        return
+      }
+
+      throw error
+    }
+  }
+
   async getCustomFields () {
     // const { fields = [], expand = [] } = query
     try {
