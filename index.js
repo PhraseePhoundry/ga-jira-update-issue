@@ -11,27 +11,29 @@ const githubEvent = require(process.env.GITHUB_EVENT_PATH)
 const config = YAML.parse(fs.readFileSync(configPath, 'utf8'))
 
 async function exec () {
-  try {
-    const result = await new Action({
-      githubEvent,
-      argv: parseArgs(),
-      config,
-    }).execute()
+  console.log('--------')
+  console.log(parseArgs())
+  // try {
+  //   const result = await new Action({
+  //     githubEvent,
+  //     argv: parseArgs(),
+  //     config,
+  //   }).execute()
 
-    if (result) {
-      const extendedConfig = Object.assign({}, config, result)
+  //   if (result) {
+  //     const extendedConfig = Object.assign({}, config, result)
 
-      fs.writeFileSync(configPath, YAML.stringify(extendedConfig))
+  //     fs.writeFileSync(configPath, YAML.stringify(extendedConfig))
 
-      return
-    }
+  //     return
+  //   }
 
-    console.log('Failed to update an issue.')
-    process.exit(78)
-  } catch (error) {
-    console.error(error)
-    process.exit(1)
-  }
+  //   console.log('Failed to update an issue.')
+  //   process.exit(78)
+  // } catch (error) {
+  //   console.error(error)
+  //   process.exit(1)
+  // }
 }
 
 function parseArgs () {

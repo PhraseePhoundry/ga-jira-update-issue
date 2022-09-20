@@ -4,9 +4,6 @@ inputs:
   issue:
     description: Key of the issue to be updated
     required: true
-  comment:
-    description: Update
-    required: true
 runs:
   using: 'node12'
   main: './index.js'
