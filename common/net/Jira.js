@@ -31,16 +31,16 @@ class Jira {
     }
   }
 
-  async getProjectIssues (query = {}) {
-    const { fields = [], expand = [] } = query
+  async getProjectIssues () {
+    // const { fields = [], expand = [] } = query
 
     try {
-      return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/createmeta/HS/issuetypes`,
-        query: {
-          fields: fields.join(','),
-          expand: expand.join(','),
-        },
+      return this.fetch('getProjectIssues', {
+        pathname: `/rest/api/2/issue/createmeta?expand=projects.issuetypes.fields`,
+        // query: {
+        //   fields: fields.join(','),
+        //   expand: expand.join(','),
+        // },
       })
     } catch (error) {
       if (get(error, 'res.status') === 404) {
