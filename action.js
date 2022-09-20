@@ -19,8 +19,8 @@ module.exports = class {
     console.log(`Updating ${issueId}`)
     console.log('Getting project details')
     console.log(await this.Jira.getProjects())
-    console.log('Getting custom fields details')
-    console.log(await this.Jira.getCustomFields())
+    console.log('Getting project issues details')
+    console.log(await this.Jira.getProjectIssues())
     console.log('Getting issue details')
     console.log(await this.Jira.getIssue(issueId))
 

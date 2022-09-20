@@ -31,6 +31,26 @@ class Jira {
     }
   }
 
+  async getProjectIssues (query = {}) {
+    const { fields = [], expand = [] } = query
+
+    try {
+      return this.fetch('getIssue', {
+        pathname: `/rest/api/2/issue/createmeta/HS/issuetypes`,
+        query: {
+          fields: fields.join(','),
+          expand: expand.join(','),
+        },
+      })
+    } catch (error) {
+      if (get(error, 'res.status') === 404) {
+        return
+      }
+
+      throw error
+    }
+  }
+
   async getCustomFields (query = {}) {
     const { fields = [], expand = [] } = query
 
