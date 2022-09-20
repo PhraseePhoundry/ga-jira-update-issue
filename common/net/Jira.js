@@ -16,7 +16,7 @@ class Jira {
 
     try {
       return this.fetch('getIssue', {
-        pathname: `/rest/api/2/issue/${issueId}`,
+        pathname: `/rest/api/2/issue/${issueId}?expand=names`,
         query: {
           fields: fields.join(','),
           expand: expand.join(','),
