@@ -15,7 +15,7 @@ module.exports = class {
 
   async execute () {
     const issueId = this.argv.issue || this.config.issue || null
-    const newTag = this.argv.newTag || null
+    // const newTag = this.argv.newTag || null
 
     // console.log(`Updating ${issueId}`)
     // console.log('Getting project details')
@@ -25,9 +25,18 @@ module.exports = class {
     // console.log('Getting issue details')
     // console.log(await this.Jira.getIssue(issueId))
 
-    console.log(await this.Jira.getFieldInfo(issueId))
+    const fieldInfo = await this.Jira.getFieldInfo(issueId)
 
-    console.log(await this.Jira.updateIssue(issueId, newTag))
+    console.log(fieldInfo.fields.customfield_10090)
+    console.log(fieldInfo.fields.customfield_10090.schema)
+    console.log(fieldInfo.fields.customfield_10090.operations)
+
+    console.log(fieldInfo.fields.components)
+    console.log(fieldInfo.fields.schema)
+    console.log(fieldInfo.fields.operations)
+    console.log(fieldInfo.fields.allowedValues)
+
+    // console.log(await this.Jira.updateIssue(issueId, newTag))
 
     return {}
   }
