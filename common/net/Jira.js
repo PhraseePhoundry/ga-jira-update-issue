@@ -52,9 +52,8 @@ class Jira {
       },
       { method: 'PUT',
         body: {
-          update: {
-            components: [{ add: { name: 'Service Version Test' } }],
-            // customfield_10090: newTag,
+          fields: {
+            customfield_10092: newTag,
           },
         } },)
     } catch (error) {
