@@ -25,6 +25,8 @@ module.exports = class {
     // console.log('Getting issue details')
     // console.log(await this.Jira.getIssue(issueId))
 
+    console.log(await this.Jira.getFieldInfo(issueId))
+
     console.log(await this.Jira.updateIssue(issueId, newTag))
 
     return {}

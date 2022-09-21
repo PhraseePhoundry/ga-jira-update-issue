@@ -31,13 +31,19 @@ class Jira {
     }
   }
 
-  //   {
-  //     "update" : {
-  //         "components" : [{"remove" : {"name" : "Trans/A"}}, {"add" : {"name" : "Trans/M"}}],
-  //         "assignee" : [{"set" : {"name" : "harry"}}],
-  //         "summary" : [{"set" : "Big block Chevy"}]
-  //     }
-  // }
+  async getFieldInfo (issueId) {
+    try {
+      return this.fetch('updateIssue', {
+        pathname: `/rest/api/2/issue/${issueId}/editmeta`,
+      })
+    } catch (error) {
+      if (get(error, 'res.status') === 404) {
+        return
+      }
+
+      throw error
+    }
+  }
 
   async updateIssue (issueId, newTag) {
     try {
