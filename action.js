@@ -27,14 +27,11 @@ module.exports = class {
 
     const fieldInfo = await this.Jira.getFieldInfo(issueId)
 
-    console.log(fieldInfo.fields.customfield_10090)
-    console.log(fieldInfo.fields.customfield_10090.schema)
-    console.log(fieldInfo.fields.customfield_10090.operations)
-
-    console.log(fieldInfo.fields.components)
-    console.log(fieldInfo.fields.schema)
-    console.log(fieldInfo.fields.operations)
-    console.log(fieldInfo.fields.allowedValues)
+    console.log(fieldInfo)
+    console.log(fieldInfo.fields)
+    // console.log(fieldInfo.fields.schema)
+    // console.log(fieldInfo.fields.operations)
+    // console.log(fieldInfo.fields.allowedValues)
 
     // console.log(await this.Jira.updateIssue(issueId, newTag))
 
