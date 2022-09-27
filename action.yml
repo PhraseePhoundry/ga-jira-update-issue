@@ -6,7 +6,6 @@ branding:
 inputs:
   issue:
     description: Key of the issue to be commented on
-    required: true
   newTag:
     description: New version number for the service
     required: true

@@ -21,7 +21,13 @@ module.exports = class {
     // console.log(fieldInfo.fields.operations)
     // console.log(fieldInfo.fields.allowedValues)
 
-    await this.Jira.updateIssue(issueId, newTag)
+    if (issueId && newTag) {
+      await this.Jira.updateIssue(issueId, newTag)
+    } else {
+      console.log('Unable to update Jira: issue ID or service version missing.')
+      console.log(`Issue ID: ${issueId}`)
+      console.log(`New version: ${newTag}`)
+    }
 
     return {}
   }

@@ -2,7 +2,6 @@ const fs = require('fs')
 const YAML = require('yaml')
 const core = require('@actions/core')
 
-const cliConfigPath = `${process.env.HOME}/.jira.d/config.yml`
 const configPath = `${process.env.HOME}/jira/config.yml`
 const Action = require('./action')
 
@@ -18,9 +17,9 @@ async function exec () {
       config,
     }).execute()
 
-
     if (result) {
       const extendedConfig = Object.assign({}, config, result)
+
       fs.writeFileSync(configPath, YAML.stringify(extendedConfig))
 
       return
@@ -37,7 +36,7 @@ async function exec () {
 function parseArgs () {
   return {
     issue: core.getInput('issue'),
-    newTag: core.getInput('newTag')
+    newTag: core.getInput('newTag'),
   }
 }
 
