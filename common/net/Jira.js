@@ -55,7 +55,7 @@ class Jira {
           fields: {
             customfield_10092: newTag,
           },
-        } },)
+        } })
     } catch (error) {
       if (get(error, 'res.status') === 404) {
         return
