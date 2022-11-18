@@ -35,7 +35,7 @@ async function exec () {
 
 function parseArgs () {
   return {
-    issue: core.getInput('issue'),
+    issue: JSON.parse(core.getInput('issue')),
     newTag: core.getInput('newTag'),
   }
 }
