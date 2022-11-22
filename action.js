@@ -14,16 +14,14 @@ module.exports = class {
   }
 
   async execute () {
-    const issueIds = this.argv.issue || this.config.issue || null
+    const issueId = this.argv.issue || this.config.issue || null
     const newTag = this.argv.newTag || null
 
-    if (issueIds && newTag) {
-      for (const issueId of issueIds) {
-        await this.Jira.updateIssue(issueId, newTag)
-      }
+    if (issueId && newTag) {
+      await this.Jira.updateIssue(issueId, newTag)
     } else {
       console.log('Unable to update Jira: issue ID or service version missing.')
-      console.log(`Issue ID: ${issueIds}`)
+      console.log(`Issue ID: ${issueId}`)
       console.log(`New version: ${newTag}`)
     }
 
