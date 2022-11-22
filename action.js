@@ -17,8 +17,13 @@ module.exports = class {
     const issueIds = this.argv.issue || this.config.issue || null
     const newTag = this.argv.newTag || null
 
+    console.log('--------')
+    console.log(issueIds)
+
     if (issueIds && newTag) {
       for (const issueId of issueIds) {
+        console.log('********')
+        console.log(issueId)
         await this.Jira.updateIssue(issueId, newTag)
       }
     } else {
